@@ -1,0 +1,184 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0073b1;
+    padding: 10px 20px;
+}
+
+.navbar .logo h1 {
+    color: white;
+    margin: 0;
+}
+
+.navbar div a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.hero {
+    background-color: #0073b1;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.hero .btn {
+    background-color: white;
+    color: #0073b1;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.search-bar {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Profile Section (LinkedIn Style) */
+.profile-section {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-id h2 {
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    color: #333;
+}
+
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: -75px;
+    border: 5px solid white;
+}
+
+.connect-btn {
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Feed Section (Instagram Style) */
+.feed-section {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feed-section .post {
+    margin-bottom: 20px;
+}
+
+.feed-section .post img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.feed-section .like-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Categories Section */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.category {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Featured Workers and Jobs Section */
+.featured-workers, .featured-jobs {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.worker, .job {
+    margin-bottom: 20px;
+}
+
+.worker img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Call to Action */
+.cta {
+    background-color: #0073b1;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.cta .btn {
+    background-color: white;
+    color: #0073b1;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}

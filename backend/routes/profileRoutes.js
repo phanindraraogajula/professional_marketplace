@@ -1,4 +1,4 @@
-// routes/users.js (example structure)
+// routes/users.js (Example Structure)
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
@@ -9,7 +9,7 @@ const {
   updateProfile,
 } = require("../controllers/profileController");
 
-// Route to fetch all users
+// Route to Fetch all users
 router.get("/allUsers", getAllUsers);
 
 router.get("/profile", protect, getUserProfile);

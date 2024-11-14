@@ -51,7 +51,7 @@ router.post("/professionals/review", async (req, res) => {
   }
 });
 
-// Update Professional Profile Route
+// Updates the Professional Profile Route
 router.put("/professionals/update", async (req, res) => {
   const { professionalId, certifications, availability } = req.body;
 

@@ -12,7 +12,7 @@ app.use(express.json());
 app.use("/api", router);
 
 describe("Professionals API", () => {
-  afterEach(() => {
+  afterEach(() => {   
     jest.clearAllMocks();
   });
 

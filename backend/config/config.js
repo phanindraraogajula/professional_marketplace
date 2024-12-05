@@ -1,18 +1,19 @@
-require('dotenv').config();
-const crypto = require('crypto');
+const mongoose = require("mongoose");
 
-// Generate a random JWT secret if one isn't provided
-const generateJwtSecret = () => {
-    return crypto.randomBytes(64).toString('hex');
+const connectDB = async () => {
+  // Use environment variable or default to 'mongodb://mongo:27017/professionalmarketdb'
+  const dbURI =
+    process.env.MONGO_URI || "mongodb://mongo:27017/professionalmarketdb";
+
+  mongoose
+    .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log("Connected to MongoDB");
+    })
+    .catch((err) => {
+      console.error("MongoDB connection error:", err);
+      process.exit(1);
+    });
 };
 
-module.exports = {
-    mongoURI: process.env.MONGO_URI || 'mongodb://localhost:27017/professionalmarketdb',
-    port: process.env.PORT || 3000,
-    jwtSecret: process.env.JWT_SECRET || generateJwtSecret(),
-    emailHost: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    emailPort: process.env.EMAIL_PORT || 587,
-    emailSecure: process.env.EMAIL_SECURE === 'true',
-    emailUser: process.env.EMAIL_USER,
-    emailPass: process.env.EMAIL_PASS
-};
+module.exports = connectDB;

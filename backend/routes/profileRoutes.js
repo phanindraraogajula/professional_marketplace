@@ -1,8 +1,18 @@
-const express = require('express');
+// routes/users.js (Example Structure)
+const express = require("express");
 const router = express.Router();
-const profileController = require('../controllers/profileController');
-const auth = require('../middlewares/auth');
+const User = require("../models/User");
+const protect = require("../middlewares/auth");
+const {
+  getUserProfile,
+  getAllUsers,
+  updateProfile,
+} = require("../controllers/profileController");
 
-router.get('/', auth, profileController.getProfile);
+// Route to Fetch all users
+router.get("/allUsers", getAllUsers);
+
+router.get("/profile", protect, getUserProfile);
+router.put("/updateProfile", protect, updateProfile);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const Booking = require("../models/Booking");
 const User = require("../models/User");
+
 exports.createBooking = async (req, res) => {
   try {
     // Check if the user is a client
@@ -52,6 +53,7 @@ exports.createBooking = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
 // Fetch bookings for the client and calculate status
 // Fetch bookings for the client and calculate status
 exports.getClientBookings = async (req, res) => {

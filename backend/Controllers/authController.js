@@ -26,13 +26,13 @@ exports.registerUser = async (req, res) => {
     availability,
   } = req.body;
 
-  // Check if email already exists
+  // Check email already exists.
   const userExists = await User.findOne({ email });
   if (userExists) {
     return res.status(400).send("Email already in use");
   }
 
-  // Create new user
+  // for new user creation
   const user = new User({
     name,
     email,

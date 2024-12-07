@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - ProfessionalMarket</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .profile-card {
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 60%;
+      }
+      .profile-header {
+        background: linear-gradient(45deg, #ff6b6b, #ffc2c2);
+        height: 100px;
+        position: relative;
+      }
+      .profile-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 5px solid white;
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f0f0f0;
+        background-size: cover;
+        background-position: center;
+      }
+      .profile-nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+      }
+      .profile-nav a {
+        color: #ff6b6b;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .profile-info {
+        text-align: center;
+        padding: 60px 20px 20px;
+      }
+      .profile-name {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      .profile-location,
+      .profile-profession,
+      .profile-education {
+        color: #777;
+        margin-bottom: 5px;
+      }
+      .profile-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-value {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: #777;
+      }
+      .show-more {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: block;
+        margin: 20px auto;
+      }
+      .show-more:hover {
+        background-color: #ff5252;
+      }
+      .additional-info {
+        padding: 0 20px 20px;
+        display: none;
+      }
+      .info-item {
+        margin-bottom: 10px;
+      }
+      .info-label {
+        font-weight: 500;
+        color: #ff6b6b;
+      }
+      .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .close-icon:hover {
+        color: #ff5252;
+      }
+      .edit-profile {
+        position: absolute;
+        top: 10px;
+        left: 15px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+        z-index: 10;
+        text-decoration: none;
+      }
+      .edit-form {
+        display: none;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .edit-form input,
+      .edit-form select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      .edit-form button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .edit-form button:hover {
+        background-color: #ff5252;
+      }
+      .bookings-section {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+      }
+
+      .booking-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: white;
+      }
+
+      .booking-card h3 {
+        margin-bottom: 5px;
+        font-size: 18px;
+        color: #ff6b6b;
+      }
+
+      .booking-card p {
+        margin: 2px 0;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-image" id="profileImage"></div>
+        <div class="close-icon" onclick="navigateToHome()">×</div>
+        <a class="edit-profile" href="#" onclick="toggleEditForm()">Edit</a>
+      </div>
+
+      <div class="profile-nav">
+        <a href="#"><i class="fas fa-user-friends"></i> Connect</a>
+        <a href="#"><i class="fas fa-envelope"></i> Message</a>
+      </div>
+      <div class="profile-info">
+        <h1 class="profile-name" id="userName"></h1>
+        <p class="profile-location" id="userLocation"></p>
+        <p class="profile-profession" id="userProfession"></p>
+
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-value" id="friendsCount">0</div>
+            <div class="stat-label">Friends</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="photosCount">0</div>
+            <div class="stat-label">Photos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="commentsCount">0</div>
+            <div class="stat-label">Comments</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="additional-info" id="additionalInfo">
+        <div class="info-item">
+          <span class="info-label">Email:</span>
+          <span id="userEmail"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">User Type:</span>
+          <span id="userType"></span>
+        </div>
+        <div id="professionalInfo" style="display: none">
+          <div class="info-item">
+            <span class="info-label">Skills:</span>
+            <span id="userSkills"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Experience:</span>
+            <span id="userExperience"></span>
+          </div>
+        </div>
+        <div class="bookings-section">
+          <h2>Your Bookings</h2>
+          <div id="bookingsContainer"></div>
+        </div>
+      </div>
+      <button class="show-more" onclick="toggleAdditionalInfo()">
+        Show more
+      </button>
+    </div>
+
+    <!-- Edit form for profile details -->
+    <div class="edit-form" id="editForm">
+      <h3>Edit Profile</h3>
+      <label for="editName">Name</label>
+      <input type="text" id="editName" />
+
+      <label for="editLocation">Location</label>
+      <input type="text" id="editLocation" />
+
+      <label for="editProfession">Profession</label>
+      <input type="text" id="editProfession" />
+
+      <label for="editSkills">Skills</label>
+      <input type="text" id="editSkills" placeholder="Comma-separated skills" />
+
+      <label for="editExperience">Experience (years)</label>
+      <input type="number" id="editExperience" />
+
+      <!-- <label for="editEducation">Education</label>
+      <input type="text" id="editEducation" /> -->
+
+      <button onclick="saveProfile()">Save Changes</button>
+    </div>
+
+    <script>
+      const API_URL = "http://localhost:5000"; // Update this with your actual backend URL
+
+      function toggleEditForm() {
+        const editForm = document.getElementById("editForm");
+        editForm.style.display =
+          editForm.style.display === "block" ? "none" : "block";
+
+        // Populate the form with existing data
+        if (editForm.style.display === "block") {
+          document.getElementById("editName").value =
+            document.getElementById("userName").textContent;
+          document.getElementById("editLocation").value =
+            document.getElementById("userLocation").textContent;
+          document.getElementById("editProfession").value =
+            document.getElementById("userProfession").textContent;
+          document.getElementById("editSkills").value =
+            document.getElementById("userSkills").textContent;
+          document.getElementById("editExperience").value =
+            document.getElementById("userExperience").textContent;
+          // document.getElementById("editEducation").value =
+          //   document.getElementById("userEducation").textContent;
+        }
+      }
+
+      async function fetchProfile() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Please sign in to access your profile.");
+          window.location.href = "signin.html";
+          return;
+        }
+
+        try {
+          const response = await fetch(`${API_URL}/users/profile`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) throw new Error("Unable to fetch profile.");
+
+          const profileData = await response.json();
+          document.getElementById("userName").textContent = profileData.name;
+          document.getElementById("userLocation").textContent =
+            profileData.location;
+          document.getElementById("userProfession").textContent =
+            profileData.profession;
+          document.getElementById("friendsCount").textContent =
+            profileData.friendsCount;
+          document.getElementById("photosCount").textContent =
+            profileData.photosCount;
+          document.getElementById("commentsCount").textContent =
+            profileData.commentsCount;
+          document.getElementById("userEmail").textContent = profileData.email;
+          document.getElementById("userType").textContent =
+            profileData.userType;
+          document.getElementById("userSkills").textContent =
+            profileData.skills.join(", ");
+          document.getElementById("userExperience").textContent =
+            profileData.experience;
+
+          if (profileData.userType === "Professional") {
+            document.getElementById("professionalInfo").style.display = "block";
+          }
+        } catch (error) {
+          console.error(error);
+          window.location.href = "signin.html";
+        }
+      }
+
+      function toggleAdditionalInfo() {
+        const additionalInfo = document.getElementById("additionalInfo");
+        const showMoreButton = document.querySelector(".show-more");
+
+        if (additionalInfo.style.display === "block") {
+          additionalInfo.style.display = "none";
+          showMoreButton.textContent = "Show more";
+        } else {
+          additionalInfo.style.display = "block";
+          showMoreButton.textContent = "Show less";
+        }
+      }
+
+      async function saveProfile() {
+        const token = localStorage.getItem("token");
+        const name = document.getElementById("editName").value;
+        const location = document.getElementById("editLocation").value;
+        const profession = document.getElementById("editProfession").value;
+        const skills = document
+          .getElementById("editSkills")
+          .value.split(",")
+          .map((skill) => skill.trim());
+        const experience = parseInt(
+          document.getElementById("editExperience").value,
+          10
+        );
+        // const education = document.getElementById("editEducation").value;
+
+        try {
+          const response = await fetch(`${API_URL}/users/updateProfile`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              name,
+              location,
+              profession,
+              skills,
+              experience,
+              // education,
+            }),
+          });
+
+          if (!response.ok) throw new Error("Failed to save profile.");
+
+          alert("Profile updated successfully!");
+          toggleEditForm();
+          fetchProfile();
+        } catch (error) {
+          console.error(error);
+          alert("Failed to update profile.");
+        }
+      }
+
+      function navigateToHome() {
+        window.location.href = "index.html";
+      }
+
+      async function fetchBookings() {
+        const token = localStorage.getItem("token");
+
+        try {
+          const response = await fetch(`${API_URL}/api/client/bookings`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) throw new Error("Unable to fetch bookings.");
+
+          const bookings = await response.json();
+          renderBookings(bookings);
+        } catch (error) {
+          console.error(error);
+          alert("Failed to fetch bookings.");
+        }
+      }
+
+      function renderBookings(bookings) {
+        const bookingsContainer = document.getElementById("bookingsContainer");
+        bookingsContainer.innerHTML = ""; // Clear existing bookings
+
+        bookings.forEach((booking) => {
+          const bookingCard = `
+      <div class="booking-card">
+        <h3>${booking.professionalId.name}</h3>
+        <p>Profession: ${booking.professionalId.profession}</p>
+        <p>Date: ${new Date(booking.date).toLocaleDateString()}</p>
+        <p>Time:  <span id="bookingTime">${booking.time} </span></p>
+        <p>Location: ${booking.professionalId.location}</p>
+        <p>Message: ${booking.message}</p>
+        <p class="booking-status">Status: ${booking.status}</p>
+      </div>
+    `;
+          bookingsContainer.innerHTML += bookingCard;
+        });
+      }
+
+
+      fetchProfile();
+      fetchBookings();
+    </script>
+  </body>
+</html>

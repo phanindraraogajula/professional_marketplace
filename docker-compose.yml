@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - backend_network
+    environment:
+      - MONGO_INITDB_DATABASE=professionalmarketdb
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    networks:
+      - backend_network
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/professionalmarketdb
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+networks:
+  backend_network:
+
+volumes:
+  mongodb_data:
